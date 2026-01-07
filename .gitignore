@@ -36,6 +36,7 @@ yarn-error.log*
 # OS
 Thumbs.db
 
+# Project Docs & API Collections
 architecture.md
 API_DOCUMENTATION.md
 postman_collection.json
