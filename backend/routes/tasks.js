@@ -5,12 +5,8 @@ const authMiddleware = require('../middleware/auth');
 
 const router = express.Router();
 
-// All routes require authentication
 router.use(authMiddleware);
 
-// @route   GET /api/tasks
-// @desc    Get all tasks for the authenticated user
-// @access  Private
 router.get('/', [
   query('status').optional().isIn(['pending', 'in-progress', 'completed']),
   query('priority').optional().isIn(['low', 'medium', 'high']),
@@ -20,7 +16,6 @@ router.get('/', [
     const { status, priority, search } = req.query;
     const filter = { user: req.user._id };
 
-    // Apply filters
     if (status) filter.status = status;
     if (priority) filter.priority = priority;
     if (search) {
@@ -44,9 +39,6 @@ router.get('/', [
   }
 });
 
-// @route   GET /api/tasks/:id
-// @desc    Get a single task
-// @access  Private
 router.get('/:id', async (req, res) => {
   try {
     const task = await Task.findOne({ 
@@ -68,9 +60,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// @route   POST /api/tasks
-// @desc    Create a new task
-// @access  Private
 router.post('/', [
   body('title')
     .trim()
@@ -93,7 +82,6 @@ router.post('/', [
     .withMessage('Priority must be low, medium, or high')
 ], async (req, res) => {
   try {
-    // Check validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ 
@@ -124,9 +112,6 @@ router.post('/', [
   }
 });
 
-// @route   PUT /api/tasks/:id
-// @desc    Update a task
-// @access  Private
 router.put('/:id', [
   body('title')
     .optional()
@@ -150,7 +135,6 @@ router.put('/:id', [
     .withMessage('Priority must be low, medium, or high')
 ], async (req, res) => {
   try {
-    // Check validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ 
@@ -190,9 +174,6 @@ router.put('/:id', [
   }
 });
 
-// @route   DELETE /api/tasks/:id
-// @desc    Delete a task
-// @access  Private
 router.delete('/:id', async (req, res) => {
   try {
     const task = await Task.findOneAndDelete({ 

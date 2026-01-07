@@ -36,3 +36,6 @@ yarn-error.log*
 # OS
 Thumbs.db
 
+architecture.md
+API_DOCUMENTATION.md
+postman_collection.json

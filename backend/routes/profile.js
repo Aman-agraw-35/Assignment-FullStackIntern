@@ -5,12 +5,8 @@ const authMiddleware = require('../middleware/auth');
 
 const router = express.Router();
 
-// All routes require authentication
 router.use(authMiddleware);
 
-// @route   GET /api/profile
-// @desc    Get user profile
-// @access  Private
 router.get('/', async (req, res) => {
   try {
     const user = await User.findById(req.user._id).select('-password');
@@ -29,9 +25,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// @route   PUT /api/profile
-// @desc    Update user profile
-// @access  Private
 router.put('/', [
   body('name')
     .optional()
@@ -45,7 +38,6 @@ router.put('/', [
     .withMessage('Please provide a valid email')
 ], async (req, res) => {
   try {
-    // Check validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ 
@@ -59,7 +51,6 @@ router.put('/', [
 
     if (name) updateFields.name = name;
     if (email) {
-      // Check if email is already taken by another user
       const existingUser = await User.findOne({ email, _id: { $ne: req.user._id } });
       if (existingUser) {
         return res.status(400).json({ message: 'Email already in use' });
