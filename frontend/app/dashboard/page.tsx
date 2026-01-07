@@ -7,6 +7,7 @@ import { removeAuthToken } from '@/lib/auth';
 import { useRouter } from 'next/navigation';
 import TaskModal from '@/components/TaskModal';
 import TaskCard from '@/components/TaskCard';
+import { useCallback } from 'react';
 
 interface User {
   id: string;
@@ -37,24 +38,26 @@ export default function DashboardPage() {
     search: '',
   });
 
-  useEffect(() => {
-    // loadData();
-  }, [filters]);
+   const loadData = useCallback(async () => {
+  try {
+    const [profileRes, tasksRes] = await Promise.all([
+      profileAPI.getProfile(),
+      tasksAPI.getTasks(filters),
+    ]);
+    setUser(profileRes.user);
+    setTasks(tasksRes.tasks);
+  } catch (error) {
+    console.error('Error loading data:', error);
+  } finally {
+    setLoading(false);
+  }
+}, [filters]);
 
-  const loadData = async () => {
-    try {
-      const [profileRes, tasksRes] = await Promise.all([
-        profileAPI.getProfile(),
-        tasksAPI.getTasks(filters),
-      ]);
-      setUser(profileRes.user);
-      setTasks(tasksRes.tasks);
-    } catch (error) {
-      console.error('Error loading data:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+
+  useEffect(() => {
+     loadData();
+  }, [loadData]);
+
 
   const handleLogout = () => {
     removeAuthToken();
