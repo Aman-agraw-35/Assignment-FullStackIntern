@@ -3,7 +3,6 @@ import Cookies from 'js-cookie';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
 
-// Create axios instance
 const api = axios.create({
   baseURL: API_URL,
   headers: {
@@ -11,7 +10,6 @@ const api = axios.create({
   },
 });
 
-// Add token to requests
 api.interceptors.request.use((config) => {
   const token = Cookies.get('token');
   if (token) {
@@ -20,12 +18,10 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Handle response errors
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Token expired or invalid
       Cookies.remove('token');
       if (typeof window !== 'undefined') {
         window.location.href = '/login';
@@ -35,7 +31,6 @@ api.interceptors.response.use(
   }
 );
 
-// Auth API
 export const authAPI = {
   register: async (name: string, email: string, password: string) => {
     const response = await api.post('/auth/register', { name, email, password });
@@ -51,7 +46,6 @@ export const authAPI = {
   },
 };
 
-// Profile API
 export const profileAPI = {
   getProfile: async () => {
     const response = await api.get('/profile');
@@ -63,7 +57,6 @@ export const profileAPI = {
   },
 };
 
-// Tasks API
 export const tasksAPI = {
   getTasks: async (filters?: { status?: string; priority?: string; search?: string }) => {
     const params = new URLSearchParams();

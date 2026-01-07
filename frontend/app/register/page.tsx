@@ -80,7 +80,7 @@ export default function RegisterPage() {
                   message: 'Name cannot exceed 50 characters',
                 },
               })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition"
+              className="w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors placeholder:text-gray-400"
               placeholder="John Doe"
             />
             {errors.name && (
@@ -102,7 +102,7 @@ export default function RegisterPage() {
                   message: 'Please enter a valid email',
                 },
               })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition"
+              className="w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors placeholder:text-gray-400"
               placeholder="you@example.com"
             />
             {errors.email && (
@@ -124,7 +124,7 @@ export default function RegisterPage() {
                   message: 'Password must be at least 6 characters',
                 },
               })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition"
+              className="w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors placeholder:text-gray-400"
               placeholder="••••••••"
             />
             {errors.password && (
@@ -144,7 +144,7 @@ export default function RegisterPage() {
                 validate: (value) =>
                   value === password || 'Passwords do not match',
               })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none transition"
+              className="w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors placeholder:text-gray-400"
               placeholder="••••••••"
             />
             {errors.confirmPassword && (

@@ -30,7 +30,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
   };
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+    <div className="bg-white border border-gray-200 rounded-lg p-5 hover:shadow-lg transition-all duration-200 hover:border-gray-300">
       <div className="flex justify-between items-start mb-2">
         <h3 className="text-lg font-semibold text-gray-900 flex-1">{task.title}</h3>
         <div className="flex gap-2">
@@ -50,7 +50,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
       </div>
       
       {task.description && (
-        <p className="text-sm text-gray-600 mb-3 line-clamp-2">{task.description}</p>
+        <p className="text-sm text-gray-700 mb-3 line-clamp-2 leading-relaxed">{task.description}</p>
       )}
 
       <div className="flex gap-2 mb-3">
@@ -62,7 +62,7 @@ export default function TaskCard({ task, onEdit, onDelete }: TaskCardProps) {
         </span>
       </div>
 
-      <p className="text-xs text-gray-500">
+      <p className="text-xs text-gray-600 font-medium">
         Created: {new Date(task.createdAt).toLocaleDateString()}
       </p>
     </div>

@@ -72,8 +72,8 @@ export default function TaskModal({ task, onClose }: TaskModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+      <div className="bg-white rounded-lg shadow-2xl max-w-md w-full p-6 border border-gray-200">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold text-gray-900">
             {isEditing ? 'Edit Task' : 'Create New Task'}
@@ -107,7 +107,7 @@ export default function TaskModal({ task, onClose }: TaskModalProps) {
                   message: 'Title cannot exceed 200 characters',
                 },
               })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+              className="w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors placeholder:text-gray-400"
             />
             {errors.title && (
               <p className="mt-1 text-sm text-red-600">{errors.title.message}</p>
@@ -127,7 +127,7 @@ export default function TaskModal({ task, onClose }: TaskModalProps) {
                   message: 'Description cannot exceed 1000 characters',
                 },
               })}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+              className="w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors placeholder:text-gray-400 resize-none"
             />
             {errors.description && (
               <p className="mt-1 text-sm text-red-600">{errors.description.message}</p>
@@ -142,7 +142,7 @@ export default function TaskModal({ task, onClose }: TaskModalProps) {
               <select
                 id="status"
                 {...register('status')}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+                className="w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors"
               >
                 <option value="pending">Pending</option>
                 <option value="in-progress">In Progress</option>
@@ -157,7 +157,7 @@ export default function TaskModal({ task, onClose }: TaskModalProps) {
               <select
                 id="priority"
                 {...register('priority')}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+                className="w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors"
               >
                 <option value="low">Low</option>
                 <option value="medium">Medium</option>
