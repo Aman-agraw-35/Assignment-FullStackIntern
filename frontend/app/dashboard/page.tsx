@@ -38,7 +38,7 @@ export default function DashboardPage() {
   });
 
   useEffect(() => {
-    loadData();
+    // loadData();
   }, [filters]);
 
   const loadData = async () => {
