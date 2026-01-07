@@ -143,9 +143,7 @@ fullstack-intern-assignment/
 │   │   ├── api.ts
 │   │   └── auth.ts
 │   └── package.json
-├── API_DOCUMENTATION.md
 ├── postman_collection.json
-├── architecture.md
 └── README.md
 ```
 
@@ -167,7 +165,6 @@ fullstack-intern-assignment/
 - `PUT /api/tasks/:id` - Update a task
 - `DELETE /api/tasks/:id` - Delete a task
 
-For detailed API documentation, see [API_DOCUMENTATION.md](./API_DOCUMENTATION.md)
 
 ## 🧪 Testing the API
 
@@ -201,8 +198,6 @@ You can use the provided Postman collection to test the API:
 5. **Logout**: Click the logout button to sign out
 
 ## 🏗️ Architecture
-
-For detailed architecture documentation, see [architecture.md](./architecture.md)
 
 ## 🚀 Scaling Considerations
 
@@ -239,4 +234,3 @@ This is an assignment project. For any questions or issues, please contact the a
 ## 📄 License
 
 This project is created for assignment purposes.
-
